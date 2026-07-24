@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>월드 풋볼 히스토리 시뮬레이터</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">From 1863 to the modern football universe</p>
+        <h1>월드 풋볼 히스토리 시뮬레이터</h1>
+        <p>
+          축구 협회 창설 시점부터 리그, 클럽대항전, 국가대항전, 개인상까지
+          한 시즌씩 진행하며 가상의 축구사를 만들어 보세요.
+        </p>
+      </div>
+      <div class="year-card" aria-live="polite">
+        <span>현재 시즌</span>
+        <strong id="currentYear">1863</strong>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel controls" aria-labelledby="controlsTitle">
+        <h2 id="controlsTitle">시뮬레이션 제어</h2>
+        <div class="control-grid">
+          <label>
+            시작 연도
+            <input id="startYear" type="number" min="1863" max="2026" value="1863" />
+          </label>
+          <label>
+            시즌 진행 수
+            <input id="seasonCount" type="number" min="1" max="50" value="1" />
+          </label>
+          <label>
+            세계관 속도
+            <select id="pace">
+              <option value="historic">역사적 확장</option>
+              <option value="balanced" selected>균형 확장</option>
+              <option value="wild">대체역사 급성장</option>
+            </select>
+          </label>
+        </div>
+        <div class="button-row">
+          <button id="advanceBtn">시즌 진행</button>
+          <button id="autoBtn" class="secondary">10시즌 자동 진행</button>
+          <button id="resetBtn" class="ghost">초기화</button>
+        </div>
+      </section>
+
+      <section class="panel timeline" aria-labelledby="timelineTitle">
+        <h2 id="timelineTitle">시대별 축구 생태계</h2>
+        <div id="eraDescription" class="era-description"></div>
+        <div id="competitionList" class="competition-list"></div>
+      </section>
+
+      <section class="panel results" aria-labelledby="resultsTitle">
+        <h2 id="resultsTitle">시즌 결과</h2>
+        <div class="tabs" role="tablist" aria-label="결과 분류">
+          <button class="tab is-active" data-tab="leagues">리그</button>
+          <button class="tab" data-tab="clubs">클럽대항전</button>
+          <button class="tab" data-tab="nations">국가대항전</button>
+          <button class="tab" data-tab="awards">발롱도르/개인상</button>
+        </div>
+        <div id="resultsBoard" class="results-board"></div>
+      </section>
+
+      <section class="panel world" aria-labelledby="worldTitle">
+        <h2 id="worldTitle">세계 축구 지표</h2>
+        <div class="metric-grid">
+          <article><span id="metricLeagues">0</span><small>활성 리그</small></article>
+          <article><span id="metricClubs">0</span><small>대표 클럽</small></article>
+          <article><span id="metricNations">0</span><small>국가대표</small></article>
+          <article><span id="metricStars">0</span><small>전설/스타</small></article>
+        </div>
+        <canvas id="prestigeChart" width="900" height="260" aria-label="대륙별 위상 그래프"></canvas>
+      </section>
+
+      <section class="panel log" aria-labelledby="logTitle">
+        <h2 id="logTitle">역사 로그</h2>
+        <ol id="historyLog"></ol>
+      </section>
+    </main>
+
+    <script src="simulator.js"></script>
+  </body>
+</html>
